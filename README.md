@@ -18,22 +18,44 @@ python train.py −−actor−model facebook / opt −1.3b \
 −−reward−model facebook / opt −350m −−deployment−type single_gpu
 ```
 ### problem 1
-If you meet the error in build torch or SyntaxError, you can try to go to  
+If you meet the error in build torch or SyntaxError, you can check the gcc version,
+```bash
+gcc --version
+```
+if it shows gcc version is 11.xx we need to change the version, comment g++-11 version.
 ```bash
 vim /usr/lib/nvidia-cuda-toolkit/bin/g++
 ```
-
+![image](image/deepspeed2.png)
 ### problem 2
 
 The problem in step1_supervised_finetuning (located under DeepSpeedExamples/applications/DeepSpeed-Chat/training) immediately runs into an 'Out of Memory' error. The reason is quite simple: the I used an A60 with 48GB of memory, while the environment in the national network uses an A100 with 40GB of memory. Therefore, the program directly throws an error.
 The solution is as follows:
 ```bash
 vim /DeepSpeedExamples/applications/DeepSpeed-Chat/training/step1_supervised_finetuning/training_scripts/opt/single_gpu/run_1.3b.sh
-Add the following parameters at line 21:
+Add the following parameters :
 --per_device_train_batch_size 8 \
 ```
 ![image](deepspeed1.png)
-if still have OOM error, you can change the batch_size to smaller number like 4,2.
+if still have OOM error, you can change the batch_size to smaller number
+
+### problem 3
+The problem in step2_reward_model_finetuning immediately runs into an "OOM" error.
+```bash
+vim /DeepSpeedExamples/applications/DeepSpeed-Chat/training/step2_reward_model_finetuning/training_scripts/opt/single_gpu/run_1.3b.sh
+Add the following parameters :
+--per_device_train_batch_size 8 \
+```
+![image](image/deepspeed3.png)
+if still have OOM error, you can change the batch_size to smaller number
+
+### problem 4
+Deepspeed version issue, we need to install version 0.10.0
+```bash
+pip install deepspeed===0.10.0
+```
+after few hour of training you will get
+
 
 
 
