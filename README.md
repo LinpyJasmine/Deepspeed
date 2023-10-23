@@ -55,6 +55,7 @@ Deepspeed version issue, we need to install version 0.10.0
 pip install deepspeed===0.10.0
 ```
 after few hour of training you will get
+![image](image/deepspeed4.png)
 
 
 
