@@ -57,6 +57,20 @@ pip install deepspeed===0.10.0
 after few hour of training you will get
 ![image](image/deepspeed4.png)
 
+## more training
+If you wanna start talking with you chat-GPT like model 
+```bash
+cd /DeepSpeedExamples/applications/DeepSpeed-Chat/
+nohup python3 train.py --step 3 --actor-model facebook/opt-1.3b --reward-model facebook/opt-350m --deployment-type single_node > train.log 2>&1 &
+```
+### problem 1
+Before we have change gcc version to 10.xx, now we need to change it back to version 11.xx
+```bash
+vim /usr/lib/nvidia-cuda-toolkit/bin/g++
+```
+### problem 2
+
+
 
 
 
