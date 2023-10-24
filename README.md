@@ -64,11 +64,24 @@ cd /DeepSpeedExamples/applications/DeepSpeed-Chat/
 nohup python3 train.py --step 3 --actor-model facebook/opt-1.3b --reward-model facebook/opt-350m --deployment-type single_node > train.log 2>&1 &
 ```
 ### problem 1
-Before we have change gcc version to 10.xx, now we need to change it back to version 11.xx
+Before we have change gcc version to 10.xx, now we need to change it back to version 11.xx because the 
 ```bash
 vim /usr/lib/nvidia-cuda-toolkit/bin/g++
 ```
+![image](image/deepspeed5.png)
 ### problem 2
+Cuda's version need to be cuda
+
+## running
+```bash
+python3 chat.py --path output/step3-models/1.3b/actor
+```
+## reference
+```bash
+https://hackmd.io/pER__S14RgCFgFCqSfiQhw
+https://github.com/microsoft/DeepSpeedExamples/blob/master/applications/DeepSpeed-Chat/README.md
+https://github.com/microsoft/DeepSpeed/blob/master/blogs/deepspeed-chat/README.md
+```
 
 
 
