@@ -70,7 +70,12 @@ vim /usr/lib/nvidia-cuda-toolkit/bin/g++
 ```
 ![image](image/deepspeed5.png)
 ### problem 2
-Cuda's version need to be cuda
+Cuda's version need to be cuda 12.xx. Thus, if your cuda version is not 12.xx we need to change it.
+Excute the following code. When excuting the second code, remember not to choose driver.
+```bash
+ wget https://developer.download.nvidia.com/compute/cuda/12.1.0/local_installers/cuda_12.1.0_530.30.02_linux.run
+sudo sh cuda_12.1.0_530.30.02_linux.run
+```
 
 ## running
 ```bash
